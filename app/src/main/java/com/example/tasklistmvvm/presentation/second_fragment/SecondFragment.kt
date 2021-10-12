@@ -32,14 +32,12 @@ class SecondFragment : Fragment(R.layout.fragment_second) {
         factory = TaskViewModelFactory(repository, context = requireContext())
         viewModel = ViewModelProvider(this, factory)[TaskViewModel::class.java]
 
-        Log.e("Smt", "Bundle = $args ")
         if (args.fromRecyclerView) {
             binding.taskTitle.setText(args.title)
             binding.taskDescription.setText(args.description)
             binding.checkBox.isChecked = args.priority == true
             binding.saveButton.text = "Update"
         }
-        Log.e("Smt", "5")
 
         binding.saveButton.setOnClickListener {
 
@@ -56,7 +54,7 @@ class SecondFragment : Fragment(R.layout.fragment_second) {
                         title, priority, text
                     )
                     CoroutineScope(Dispatchers.Main).launch {
-                        Log.e("Smt", "Task is $task")
+
                         viewModel.updateTaskInfo(task)
                     }
                 } else {
@@ -72,19 +70,7 @@ class SecondFragment : Fragment(R.layout.fragment_second) {
             }
         }
 
-        Log.e("Smt", "6")
 
     }
-
-//    override suspend fun onDeleteTaskClickListener(taskEntity: TaskEntity) {
-////        viewModel.deleteTask(taskEntity)
-//    }
-//
-//    override suspend fun onItemClickListener(taskEntity: TaskEntity, id: Int?) {
-////        binding.taskTitle.setText(taskEntity.title)
-////        binding.taskDescription.setText(taskEntity.text)
-////        binding.checkBox.isChecked = taskEntity.priority!!
-//
-//    }
 
 }

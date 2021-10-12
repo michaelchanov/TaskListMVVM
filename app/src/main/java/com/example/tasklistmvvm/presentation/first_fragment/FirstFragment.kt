@@ -30,12 +30,12 @@ class FirstFragment : Fragment(R.layout.fragment_first), RecyclerAdapter.RowClic
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentFirstBinding.bind(view)
 
-        Log.e("Smt", "1")
+
         taskDatabase = TaskDatabase.getAppDatabase(requireContext())!!
         repository = TaskRepository(taskDatabase.getTaskDao())
         factory = TaskViewModelFactory(repository, context = requireContext())
         viewModel = ViewModelProvider(this, factory)[TaskViewModel::class.java]
-        Log.e("Smt", "2")
+
 
 
         binding.recyclerView.apply {
@@ -43,19 +43,15 @@ class FirstFragment : Fragment(R.layout.fragment_first), RecyclerAdapter.RowClic
             recyclerViewAdapter = RecyclerAdapter(this@FirstFragment)
             adapter = recyclerViewAdapter
             adapter = adapter
-            Log.e("Smt", "$adapter")
+
         }
 
-        Log.e("Smt", "3")
+
 
         viewModel.getAllTasksObservers().observe( viewLifecycleOwner, Observer {
             recyclerViewAdapter.setDataList(ArrayList(it))
-            Log.e("Smt", "List = ${viewModel.getAllTasksObservers().value}")
             recyclerViewAdapter.notifyDataSetChanged()
-        }
-
-        )
-        Log.e("Smt", "4")
+        })
         binding.addTaskButton.setOnClickListener {
             findNavController().navigate(R.id.action_firstFragment_to_secondFragment)
         }

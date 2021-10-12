@@ -18,10 +18,9 @@ class TaskViewModel(
 
     fun getAllTasksObservers(): MutableLiveData<List<TaskEntity>> {
         return allTasks
-        Log.e("Smt", "List = ${allTasks.value}")
     }
 
-    fun getAllTasks(){
+    private fun getAllTasks(){
         viewModelScope.launch {
             val taskDao = TaskDatabase.getAppDatabase(context)?.getTaskDao()
             val list = taskDao?.getTask()
@@ -55,7 +54,5 @@ class TaskViewModel(
     }
 
 
-
-//    suspend fun getAllTasks() = viewModelScope.launch { repository.getAllTasks() }
 
 }

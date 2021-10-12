@@ -41,12 +41,6 @@ class RecyclerAdapter(val listener: RowClickListener?) :
             }
         }
         holder.bind(items[position])
-        Log.e(
-            "Smt", "${
-                items.forEach {
-                    Log.e("Smt", "$it")
-                }
-            }}")
     }
 
     inner class ViewHolder(val binding: TaskrecyclerItemBinding, val listener: RowClickListener?) :

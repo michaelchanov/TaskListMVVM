@@ -20,11 +20,6 @@ interface TaskDao {
     @Query("SELECT * FROM task_info ORDER BY id DESC")
     fun getTask(): List<TaskEntity>?
 
-//    @Query("DELETE FROM task_table")
-//    suspend fun deleteTasks()
-//
-//    @Query("DELETE FROM task_table WHERE id = :id")
-//    suspend fun deleteTaskById(id: Int)
 
 
 
